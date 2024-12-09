@@ -22,5 +22,5 @@ class Borrow(IntIdPkMixin, Base):
     )
     date_return: Mapped[datetime]
 
-    book: Mapped["Book"] = relationship("Book", back_populates='borrows')
+    book: Mapped["Book"] = relationship("Book", back_populates='borrow')
 

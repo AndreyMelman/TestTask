@@ -24,5 +24,5 @@ class Book(IntIdPkMixin, Base):
     author_id: Mapped[int] = mapped_column(ForeignKey("authors.id"))
     count: Mapped[int] = mapped_column(Integer, default=0)
 
-    author: Mapped["Author"] = relationship("Author", back_populates="books")
-    borrow: Mapped[list["Borrow"]] = relationship("Borrow", back_populates="books")
+    author: Mapped["Author"] = relationship("Author", back_populates="book")
+    borrow: Mapped[list["Borrow"]] = relationship(back_populates="book")
