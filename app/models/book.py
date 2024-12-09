@@ -3,8 +3,8 @@ from typing import TYPE_CHECKING
 from sqlalchemy import String, Integer, ForeignKey, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from core import Base
-from mixins.int_id_pk import IntIdPkMixin
+from core.db import Base
+from .mixins.int_id_pk import IntIdPkMixin
 
 if TYPE_CHECKING:
     from .borrow import Borrow
@@ -24,5 +24,5 @@ class Book(IntIdPkMixin, Base):
     author_id: Mapped[int] = mapped_column(ForeignKey("authors.id"))
     count: Mapped[int] = mapped_column(Integer, default=0)
 
-    author: Mapped[list["Author"]] = relationship(back_populates="books")
-    borrow: Mapped[list["Borrow"]] = relationship(back_populates="books")
+    author: Mapped["Author"] = relationship("Author", back_populates="books")
+    borrow: Mapped[list["Borrow"]] = relationship("Borrow", back_populates="books")
