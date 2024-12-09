@@ -5,8 +5,12 @@ class RunConfig(BaseModel):
     host: str = "0.0.0.0"
     port: int = 8000
 
+
 class ApiPrefix(BaseModel):
     prefix: str = "/api"
+    authors: str = "/authors"
+    books: str = "/books"
+    borrows: str = "/borrows"
 
 class DatabaseConfig(BaseModel):
     url: PostgresDsn
