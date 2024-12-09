@@ -7,10 +7,9 @@ class RunConfig(BaseModel):
 
 
 class ApiPrefix(BaseModel):
-    prefix: str = "/api"
-    authors: str = "/authors"
-    books: str = "/books"
-    borrows: str = "/borrows"
+    authors: str = "/api/authors"
+    books: str = "/api/books"
+    borrows: str = "/api/borrows"
 
 class DatabaseConfig(BaseModel):
     url: PostgresDsn
