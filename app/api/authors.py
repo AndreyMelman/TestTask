@@ -12,7 +12,7 @@ from .dependencies.load_by_id import author_by_id
 router = APIRouter(tags=["Authors"], prefix=settings.api.authors)
 
 
-@router.post("/", response_model=AuthorCreate, status_code=status.HTTP_201_CREATED)
+@router.post("/", response_model=Author, status_code=status.HTTP_201_CREATED)
 async def create_author(
     author_in: AuthorCreate,
     session: AsyncSession = Depends(db_helper.getter_session),
