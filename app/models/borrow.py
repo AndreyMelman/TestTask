@@ -20,7 +20,7 @@ class Borrow(IntIdPkMixin, Base):
         server_default=func.now(),
         default=datetime.now,
     )
-    date_return: Mapped[datetime]
+    date_return: Mapped[datetime | None] = mapped_column(default=None)
 
     book: Mapped["Book"] = relationship("Book", back_populates='borrow')
 
