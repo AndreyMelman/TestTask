@@ -4,7 +4,8 @@ from fastapi import Path, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.db import db_helper
-from crud import authors, books
+from crud import authors, books, borrows
+from models import Borrow
 from models.author import Author
 from models.book import Book
 
@@ -32,4 +33,16 @@ async def book_by_id(
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
         detail=f"Book {book_id} not found",
+    )
+
+async def borrow_by_id(
+    borrow_id: Annotated[int, Path],
+    session: AsyncSession = Depends(db_helper.getter_session),
+) -> Borrow:
+    borrow = await borrows.get_borrow(session, borrow_id)
+    if borrow is not None:
+        return borrow
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail=f"Borrow {borrow_id} not found",
     )
