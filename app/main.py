@@ -4,7 +4,8 @@ import uvicorn
 from fastapi import FastAPI
 
 from core.config import settings
-from api.authors import router as api_router
+from api.authors import router as api_router_authors
+from api.books import router as api_router_books
 
 from core.db.dp_helper import db_helper
 
@@ -18,7 +19,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI()
 
-app.include_router(api_router)
+app.include_router(api_router_authors)
+app.include_router(api_router_books)
 
 
 @app.get("/")
