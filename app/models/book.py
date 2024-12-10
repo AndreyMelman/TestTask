@@ -21,7 +21,10 @@ class Book(IntIdPkMixin, Base):
         default="",
         server_default="",
     )
-    author_id: Mapped[int] = mapped_column(ForeignKey("authors.id"))
+    author_id: Mapped[int] = mapped_column(
+        ForeignKey("authors.id", ondelete="SET NULL"),
+        nullable=True,
+    )
     count: Mapped[int] = mapped_column(Integer, default=0)
 
     author: Mapped["Author"] = relationship("Author", back_populates="book")

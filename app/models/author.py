@@ -20,4 +20,6 @@ class Author(IntIdPkMixin, Base):
     last_name: Mapped[str] = mapped_column(String(32))
     date_of_birth: Mapped[date] = mapped_column(nullable=False)
 
-    book: Mapped[list["Book"]] = relationship(back_populates="author")
+    book: Mapped[list["Book"]] = relationship(
+        back_populates="author",
+    )
