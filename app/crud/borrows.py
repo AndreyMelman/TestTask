@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from fastapi import HTTPException, status
 
 from sqlalchemy import Result, select, update

@@ -27,7 +27,9 @@ async def create_author(
 async def get_authors(
     session: AsyncSession = Depends(db_helper.getter_session),
 ):
-    return await authors.get_authors(session=session)
+    return await authors.get_authors(
+        session=session,
+    )
 
 
 @router.get("/{author_id}", response_model=Author)

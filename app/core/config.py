@@ -1,6 +1,7 @@
 from pydantic import BaseModel, PostgresDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+
 class RunConfig(BaseModel):
     host: str = "0.0.0.0"
     port: int = 8000
@@ -10,6 +11,7 @@ class ApiPrefix(BaseModel):
     authors: str = "/api/authors"
     books: str = "/api/books"
     borrows: str = "/api/borrows"
+
 
 class DatabaseConfig(BaseModel):
     url: PostgresDsn

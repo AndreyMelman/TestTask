@@ -10,11 +10,15 @@ from .mixins.int_id_pk import IntIdPkMixin
 if TYPE_CHECKING:
     from .book import Book
 
+
 class Borrow(IntIdPkMixin, Base):
 
-    __tablename__ = 'borrows'
+    __tablename__ = "borrows"
 
-    book_id: Mapped[int] = mapped_column(ForeignKey('books.id'))
+    book_id: Mapped[int] = mapped_column(
+        ForeignKey("books.id", ondelete="SET NULL"),
+        nullable=True,
+    )
     reader_name: Mapped[str] = mapped_column(String(32))
     date_of_issue: Mapped[datetime] = mapped_column(
         server_default=func.now(),
@@ -22,5 +26,4 @@ class Borrow(IntIdPkMixin, Base):
     )
     date_return: Mapped[datetime | None] = mapped_column(default=None)
 
-    book: Mapped["Book"] = relationship("Book", back_populates='borrow')
-
+    book: Mapped["Book"] = relationship("Book", back_populates="borrow")

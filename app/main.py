@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from core.config import settings
 from api.authors import router as api_router_authors
 from api.books import router as api_router_books
-from api.borrows import router as api_borrows
+from api.borrows import router as api_router_borrows
 
 from core.db.dp_helper import db_helper
 
@@ -22,7 +22,7 @@ app = FastAPI()
 
 app.include_router(api_router_authors)
 app.include_router(api_router_books)
-app.include_router(api_borrows)
+app.include_router(api_router_borrows)
 
 
 @app.get("/")
